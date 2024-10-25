@@ -9,8 +9,9 @@
   <body>
     <div id="shopping-list">
       <h1>{{header || 'Welcome'}}</h1>
-      <input placeholder="Add a new item" v-model="newItem" />
-      {{newItem}}
+      <input placeholder="Add a new item" v-model="newItem" @keyup.enter="items.push({id: items.length + 1, label: newItem})" />
+      <label> <input type="checkbox" v-model="newItemHighPriority" value="newItemHighPriority" /> High </label>
+      <button @click="items.push({id: items.length + 1, label: newItem})" class="btn btn-primary">Save Item</button>
 
       <ul>
         <li v-for="item in items" :key="item.id">{{item.label}}</li>
@@ -24,6 +25,7 @@
           return {
             header: "Shopping List App",
             newItem: "",
+            newItemHighPriority: false,
             items: [
               { id: 1, label: "Pão" },
               { id: 2, label: "Ovos" },
