@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue.js 3 - Shopping List</title>
+  </head>
+
+  <body>
+    <div id="shopping-list">
+      <h1>{{header || 'Welcome'}}</h1>
+      <input placeholder="Add a new item" v-model="newItem" />
+      {{newItem}}
+
+      <ul>
+        <li v-for="item in items" :key="item.id">{{item.label}}</li>
+      </ul>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            header: "Shopping List App",
+            newItem: "",
+            items: [
+              { id: 1, label: "Pão" },
+              { id: 2, label: "Ovos" },
+              { id: 3, label: "Leite" },
+            ],
+          };
+        },
+      }).mount("#shopping-list");
+    </script>
+  </body>
+</html>
